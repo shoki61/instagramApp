@@ -23,7 +23,9 @@ export default StyleSheet.create({
         flexDirection:'row',
         backgroundColor:'black',
         paddingLeft:15,
-        alignItems:'center'
+        alignItems:'center',
+        borderBottomColor:'white',
+        borderBottomWidth:0.2
     },
     userContainer:{
         alignItems:'center',
@@ -37,7 +39,7 @@ export default StyleSheet.create({
         color:'white',
     },
     userInfoSection:{
-        backgroundColor:'grey',
+        backgroundColor:'black',
         justifyContent:'space-between',
         alignItems:'center',
         flexDirection:'row',
