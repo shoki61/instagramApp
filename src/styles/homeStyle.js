@@ -25,7 +25,7 @@ export default StyleSheet.create({
         paddingLeft:15,
         alignItems:'center',
         borderBottomColor:'white',
-        borderBottomWidth:0.2
+        borderBottomWidth:0.5
     },
     userContainer:{
         alignItems:'center',

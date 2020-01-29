@@ -60,7 +60,7 @@ class Home extends React.Component{
                         </View>
                     </View>
                 </View>
-                <Footer navigation={this.props.navigation} /> 
+                <Footer navigation={this.props.navigation}/> 
             </View>
         )
     }
