@@ -7,7 +7,7 @@ const h = Dimensions.get('window').height;
 export default StyleSheet.create({
     container:{
         width:w,
-        minHeight:h,
+        height:h,
     },
     header:{
         height:h/11,

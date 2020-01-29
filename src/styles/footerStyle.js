@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
     footerContainer:{
         height:h/11.5,
         width:w,
-        position:'absolute',
-        bottom:0,
+        bottom:20,
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
