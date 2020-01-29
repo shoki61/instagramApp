@@ -8,7 +8,6 @@ export default StyleSheet.create({
     container:{
         width:w,
         minHeight:h,
-        backgroundColor:'gold'
     },
     header:{
         height:h/11,
