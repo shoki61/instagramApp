@@ -6,15 +6,16 @@ const h = Dimensions.get('screen').height;
 const styles = StyleSheet.create({
 
     footerContainer:{
-        height:h/13,
+        height:h/11.5,
         width:w,
         position:'absolute',
-        bottom:21,
+        bottom:0,
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
         backgroundColor:'black',
-        padding:20
+        paddingLeft:30,
+        paddingRight:30
     }
 });
 
