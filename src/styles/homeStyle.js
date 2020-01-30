@@ -8,6 +8,8 @@ export default StyleSheet.create({
     container:{
         width:w,
         height:h,
+        flex:1,
+        backgroundColor:'black'
     },
     header:{
         height:h/11,
@@ -18,13 +20,12 @@ export default StyleSheet.create({
     },
     storiesPart:{
         height:h/5.5,
-        maxHeight:h/5.5,
         flexDirection:'row',
         backgroundColor:'black',
         paddingLeft:15,
         alignItems:'center',
         borderBottomColor:'white',
-        borderBottomWidth:0.5
+        borderBottomWidth:0.5,
     },
     userContainer:{
         alignItems:'center',

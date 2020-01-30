@@ -13,24 +13,31 @@ const w = Dimensions.get('window').width;
 const h = Dimensions.get('window').height;
 
 class Home extends React.Component{
-    componentWillMount(){
-       
+    setStories(data){
+        return(
+                <View style={styles.storiesPart}>
+                       <View style={styles.userContainer}>
+                         <SImage height={80} width={80} borderRadius={100} source={{uri:data.profilImg}}/>
+                         <Text style={styles.storyProfileName} > {data.userName} </Text>
+                       </View>  
+             </View>
+        );
     }
-    setHome(v) {
+    setHome(data) {
         return(                
                  <View style={styles.postsFlowSection}>
                      <View style={styles.userPostSection}>
                          <View style={styles.userInfoSection}>
  
                              <View style={{flexDirection:'row',alignItems:'center'}}>
-                                <SImage height={45} width={45} borderRadius={100} source={{uri:v.profilImg}}/>
-                               <Text style={styles.userName}>{v.userName}</Text>
+                                <SImage height={45} width={45} borderRadius={100} source={{uri:data.profilImg}}/>
+                                <Text style={styles.userName}>{data.userName}</Text>
                              </View>
                              <TouchableOpacity><SImage height={20} width={20} source={require('../images/threeDot.png')} /></TouchableOpacity>
  
                          </View>
                          <View>
-                             <SImage width={w} source={{uri:v.profilImg}} />
+                             <SImage width={w} source={{uri:data.profilImg}} />
                          </View>
                      </View>
                  </View>
@@ -39,7 +46,6 @@ class Home extends React.Component{
     renderHome(){
         return(
             <View style={styles.container}>
-                
                 <View style={styles.header}>
                   <TouchableOpacity>
                      <SImage width={30} source={require('../images/cameraIcon.png')}/>
@@ -51,18 +57,21 @@ class Home extends React.Component{
                     <SImage width={40} source={require('../images/messageIcon.png')}/>
                   </TouchableOpacity>
                 </View>
-
-                <View style={styles.storiesPart}>
-                  <View style={styles.userContainer}>
-                    <SImage height={80} width={80} borderRadius={100} source={require('../images/profilFoto.jpg')}/>
-                   <Text style={styles.storyProfileName} >Bruce Wayne</Text>
-                  </View>  
+                <View >
+                  <FlatList
+                    horizontal={true}
+                    data={data.datas}
+                    renderItem={data => this.setStories(data.item)}
+                    showsHorizontalScrollIndicator={false}
+                  />
+               </View>
+               <View style={{flex:1}}>
+                  <FlatList
+                    data={data.datas}
+                    renderItem={data => this.setHome(data.item)}
+                    showsVerticalScrollIndicator={false}
+                  />
                 </View>
-                <FlatList
-                  data={data.datas}
-                  renderItem={v => this.setHome(v.item)}
-                />
-                <Footer navigation={this.props.navigation}/>
             </View>   
         );
     }
@@ -71,7 +80,7 @@ class Home extends React.Component{
         return(
             <View style={{flex:1}}>
                 {this.renderHome()}
-                
+                <Footer navigation={this.props.navigation}/>
             </View>
            
         )
