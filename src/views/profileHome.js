@@ -5,7 +5,7 @@ import SImage from 'react-native-scalable-image';
 import Footer from './footer'
 import styles from '../styles/profileHomeStyle';
 
-class ccc extends React.Component{
+class profileHome extends React.Component{
     render(){
         return(
                <View style={{flex:1}}>
@@ -64,4 +64,4 @@ class ccc extends React.Component{
         );
     }
 }
-export default ccc;
+export default profileHome;
