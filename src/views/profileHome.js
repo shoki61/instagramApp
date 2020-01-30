@@ -7,7 +7,7 @@ import styles from '../styles/profileHomeStyle';
 
 class profileHome extends React.Component{
     render(){
-        return(
+        return( 
                <View style={{flex:1}}>
                    <View style={styles.profileHomeContainer}>
                    <View style={styles.userHeader}>

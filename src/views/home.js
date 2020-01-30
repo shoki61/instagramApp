@@ -1,6 +1,7 @@
 import React from 'react';
 import {View,Text,TouchableOpacity,Dimensions,FlatList} from 'react-native';
 import SImage from 'react-native-scalable-image';
+import {observer} from 'mobx-react';
 
 import styles from '../styles/homeStyle';
 import Footer from './footer';
@@ -12,7 +13,9 @@ const w = Dimensions.get('window').width;
 const h = Dimensions.get('window').height;
 
 class Home extends React.Component{
-    
+    componentWillMount(){
+       
+    }
     setHome(v) {
         return(                
                  <View style={styles.postsFlowSection}>
@@ -63,8 +66,8 @@ class Home extends React.Component{
             </View>   
         );
     }
-    render(){
-        
+    render(){     
+        data.setDatas();   
         return(
             <View style={{flex:1}}>
                 {this.renderHome()}
@@ -79,4 +82,4 @@ class Home extends React.Component{
 
 
 
-export default Home;
+export default observer(Home);
