@@ -1,28 +1,47 @@
 import React from 'react';
-import {View,Text} from 'react-native';
+import {View,Text,Dimensions} from 'react-native';
 import SImage from 'react-native-scalable-image';
 import { observer } from 'mobx-react';
 
 import styles from '../styles/profileHomeStyle';
 import helper from '../controllers/helper';
+import data from '../controllers/data';
+import { FlatList } from 'react-native-gesture-handler';
+
+const h = Dimensions.get('window').height;
 
 class profileHome extends React.Component{
-      componentWillMount= async ()=>{
+    componentWillMount= async ()=>{
         await helper.setNavigasyon(this.props.navigation);
        
     }
-    render(){
-        return( 
-               <View style={{flex:1}}>
-                   <View style={styles.profileHomeContainer}>
+    setProfileHosts(data){
+        return(
+           <View>
+                <SImage height={150} source={{uri:data.profilImg}} />
+           </View>        
+        )
+    }
+    renderProfilePosts(){
+        return(
+            <View>
+                <FlatList
+                data={data.datas}
+                 renderItem={data=>this.setProfileHosts(data.item)}/>
+            </View>
+        );
+    }
+    setProfileHome(data){
+        return(
+            <View style={styles.profileHomeContainer}>
                    <View style={styles.userHeader}>
-                       <Text style={styles.userName}>mrtrabzon</Text>
+                       <Text style={styles.userName}>{data.userName}</Text>
                        <SImage style={styles.menuIcon} height={25} source={require('../images/menuIcon.png')}/>
                    </View>
 
                    <View style={styles.userInfo}>
                        <View>
-                           <SImage height={115} width={115} borderRadius={100} source={require('../images/profilFoto.jpg')} />
+                           <SImage height={115} width={115} borderRadius={100} source={{uri:data.profilImg}} />
                            <SImage height={28} style={styles.bluePlusStyle} source={require('../images/bluePlusIcon.png')} />
                        </View>
                        <View style={styles.profileDatasContainer}>
@@ -58,12 +77,27 @@ class profileHome extends React.Component{
                            <View  style={styles.tabIconContainer}><SImage height={35} source={require('../images/profileIcon.png')}/></View>
                        </View>
                        <View style={styles.profilePosts} >
-                           <SImage height={150} source={require('../images/profilFoto.jpg')} />
-                           <SImage height={150} source={require('../images/profilFoto.jpg')} />
-                           <SImage height={150} source={require('../images/profilFoto.jpg')} />
+                           {this.renderProfilePosts()}   
                        </View>
                    </View>
                </View>
+
+        )
+       
+    }
+    renderProfileHome(){
+        return(
+            <FlatList
+            data={data.datas}
+            renderItem={data=>this.setProfileHome(data.item)}
+    
+          />
+        )
+    }
+    render(){
+        return( 
+               <View style={{flex:1,paddingBottom:h/11.5}}>
+                   {this.renderProfileHome()}
                </View>
         );
     }
