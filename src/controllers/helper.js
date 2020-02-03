@@ -1,12 +1,15 @@
 import { observable, action, decorate } from 'mobx';
+import { observer } from 'mobx-react';
 
 
 
 class helper {
 
     navigasyon = ''
+    x = ''
     setNavigasyon(value){
-        this.navigasyon = value;
+        this.navigasyon = value
+        this.x = JSON.stringify(value.state.routeName)
     }
     
 }
@@ -16,7 +19,8 @@ decorate(
     {
         
         navigasyon: observable,
-        setNavigasyon:action
+        setNavigasyon:action,
+        x:observable
     }
 );
 

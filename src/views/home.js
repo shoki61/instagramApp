@@ -9,6 +9,7 @@ import helper from '../controllers/helper';
 
 
 
+
 const w = Dimensions.get('window').width;
 const h = Dimensions.get('window').height;
 
@@ -16,9 +17,11 @@ class Home extends React.Component{
 
     componentWillMount= async ()=>{
         await helper.setNavigasyon(this.props.navigation);
+        await data.setDatas(); 
+          
     }
 
-    setStories(data){
+  setStories(data){
         return(
                 <View style={styles.storiesPart}>
                        <View style={styles.userContainer}>
@@ -36,7 +39,7 @@ class Home extends React.Component{
  
                              <View style={{flexDirection:'row',alignItems:'center'}}>
                                 <SImage height={45} width={45} borderRadius={100} source={{uri:data.profilImg}}/>
-                                <Text style={styles.userName}>{JSON.stringify(helper.navigasyon)}{data.userName}</Text>
+                                <Text style={styles.userName}>{data.userName}</Text>
                              </View>
                              <TouchableOpacity><SImage height={20} width={20} source={require('../images/threeDot.png')} /></TouchableOpacity>
  
@@ -49,6 +52,7 @@ class Home extends React.Component{
         );
     }
     renderHome(){
+       
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
@@ -80,12 +84,13 @@ class Home extends React.Component{
             </View>   
         );
     }
-    render(){     
-        data.setDatas();   
+    render(){ 
+       
         return(
             <View style={{flex:1}}>
-                {this.renderHome()}
-               
+             
+              {this.renderHome()} 
+                     
             </View>
            
         )

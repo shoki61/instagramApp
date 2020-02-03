@@ -8,8 +8,8 @@ class Search extends React.Component{
     }
     render(){
         return(
-            <TouchableOpacity style={{ position:'absolute'}} onPress={() => this.props.navigation.navigate('s2')}>
-                <Text style={{color:'red'}}>{JSON.stringify(helper.navigasyon)}</Text>
+            <TouchableOpacity style={{ position:'absolute'}}>
+               <Text style={{color:'red'}}>{JSON.stringify(helper.navigasyon)}</Text>
             </TouchableOpacity>
                 
         );

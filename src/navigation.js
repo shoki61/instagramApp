@@ -12,9 +12,8 @@ const settings = {
 };
 
 const pages = createStackNavigator({
-
-    profileHome : {screen: ProfileHome,navigationOptions:settings},
     home : {screen: Home,navigationOptions:settings},
+    profileHome : {screen: ProfileHome,navigationOptions:settings},
     profileActions : {screen: ProfileActions,navigationOptions:settings},
     addPhoto : {screen: AddPhoto,navigationOptions:settings},
     search : {screen: Search,navigationOptions:settings},

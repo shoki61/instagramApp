@@ -1,18 +1,21 @@
 import React from 'react';
-import {View,TouchableOpacity} from 'react-native';
+import {View,TouchableOpacity,Text} from 'react-native';
 import SImage from 'react-native-scalable-image';
+import {observer} from 'mobx-react';
 
 import styles from '../styles/footerStyle';
 import helper from '../controllers/helper';
  
+
+
+
 class Footer extends React.Component{
-    
     render(){
         return(
             <View style={styles.footerContainer} >
-
+     
                 <TouchableOpacity onPress={()=>helper.navigasyon.navigate('home')}>
-                    <SImage height={30} width={30} source={require('../images/homeIcon.png')}/>
+                  <SImage height={30} width={30} source={require('../images/homeIcon.png')}/>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={()=>helper.navigasyon.navigate('search')}>
@@ -36,12 +39,4 @@ class Footer extends React.Component{
     }
 }
 
-/*<TouchableOpacity
-
-
- style={{position:'absolute'}} >
-      <Text style={{color:'red'}}>sssss</Text>
-</TouchableOpacity>*/
-
-
-export default Footer;
+export default observer(Footer);
