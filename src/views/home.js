@@ -26,7 +26,7 @@ class Home extends React.Component{
                 <View style={styles.storiesPart}>
                        <View style={styles.userContainer}>
                          <SImage height={80} width={80} borderRadius={100} source={{uri:data.profilImg}}/>
-                         <Text style={styles.storyProfileName} > {data.userName} </Text>
+                         <Text numberOfLines={1} style={styles.storyProfileName} >{data.userName} </Text>
                        </View>  
              </View>
         );
@@ -87,7 +87,7 @@ class Home extends React.Component{
     render(){ 
        
         return(
-            <View style={{flex:1}}>
+            <View style={{flex:1,paddingBottom:h/11.5}}>
              
               {this.renderHome()} 
                      

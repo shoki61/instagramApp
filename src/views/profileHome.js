@@ -1,6 +1,7 @@
 import React from 'react';
 import {View,Text} from 'react-native';
 import SImage from 'react-native-scalable-image';
+import { observer } from 'mobx-react';
 
 import styles from '../styles/profileHomeStyle';
 import helper from '../controllers/helper';
@@ -40,7 +41,7 @@ class profileHome extends React.Component{
                        </View>
                    </View>
                    
-                   <Text style={styles.userDescription}>{JSON.stringify(helper.navigasyon)}</Text>
+                   <Text style={styles.userDescription}>Myrat</Text>
 
                    <Text style={styles.profileSettings}>Profili Düzenle</Text>
 
@@ -67,4 +68,4 @@ class profileHome extends React.Component{
         );
     }
 }
-export default profileHome;
+export default observer(profileHome);

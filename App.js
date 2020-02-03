@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Alert} from 'react-native';
+import {View} from 'react-native';
 import Footer from './src/views/footer';
 import Navigation from './src/navigation';
 
@@ -8,9 +8,7 @@ class App extends React.Component{
     render(){
         return(
                 <View style={{flex:1}}>
-                  <Navigation
-                    onDidFocus={() => Alert.alert('Refreshed')}
-                  />
+                  <Navigation/>
                   <Footer/>
                 </View> 
         );

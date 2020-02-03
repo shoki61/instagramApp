@@ -37,6 +37,10 @@ export default StyleSheet.create({
     storyProfileName:{
         fontSize:17,
         color:'white',
+        width:90,
+        height:27,
+        overflow:'hidden',
+        textAlign:'center',
     },
     userInfoSection:{
         backgroundColor:'black',
