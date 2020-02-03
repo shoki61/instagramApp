@@ -11,6 +11,8 @@ class data {
         axios.get('https://intagram-app.firebaseio.com/datas.json')
         .then(response=>{
             this.datas = response.data;
+        }).catch(error=>{
+            alert('Bir hata oluştu')
         })
     }
     

@@ -2,10 +2,14 @@ import React from 'react';
 import {View,Text} from 'react-native';
 import SImage from 'react-native-scalable-image';
 
-import Footer from './footer'
 import styles from '../styles/profileHomeStyle';
+import helper from '../controllers/helper';
 
 class profileHome extends React.Component{
+      componentWillMount= async ()=>{
+        await helper.setNavigasyon(this.props.navigation);
+       
+    }
     render(){
         return( 
                <View style={{flex:1}}>
@@ -36,7 +40,7 @@ class profileHome extends React.Component{
                        </View>
                    </View>
                    
-                   <Text style={styles.userDescription}>Myrat</Text>
+                   <Text style={styles.userDescription}>{JSON.stringify(helper.navigasyon)}</Text>
 
                    <Text style={styles.profileSettings}>Profili Düzenle</Text>
 
@@ -59,7 +63,6 @@ class profileHome extends React.Component{
                        </View>
                    </View>
                </View>
-                   <Footer navigation={this.props.navigation}/>
                </View>
         );
     }

@@ -19,8 +19,7 @@ const pages = createStackNavigator({
     addPhoto : {screen: AddPhoto,navigationOptions:settings},
     search : {screen: Search,navigationOptions:settings},
     
-},
-   {initialRouteName:'home'}
+}
 );
 
 

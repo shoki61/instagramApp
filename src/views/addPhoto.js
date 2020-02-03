@@ -1,10 +1,14 @@
 import React from 'react';
 import {View,Text} from 'react-native';
+import helper from '../controllers/helper'
 
 class aaa extends React.Component{
+    componentWillMount= async ()=>{
+        await helper.setNavigasyon(this.props.navigation);
+    }
     render(){
         return(
-                <Text style={{color:'red', position:'absolute',}}>fdghjk</Text>
+        <Text style={{color:'red', position:'absolute',}}>{JSON.stringify(helper.navigasyon)}</Text>
         );
     }
 }

@@ -22,7 +22,7 @@ export default StyleSheet.create({
         height:h/5.5,
         flexDirection:'row',
         backgroundColor:'black',
-        paddingLeft:15,
+        paddingLeft:10,
         alignItems:'center',
         borderBottomColor:'white',
         borderBottomWidth:0.5,
@@ -30,8 +30,8 @@ export default StyleSheet.create({
     userContainer:{
         alignItems:'center',
         flexDirection:'column',
-        paddingLeft:10,
-        paddingRight:10,
+        paddingLeft:5,
+        paddingRight:5,
         margin:5,
     },
     storyProfileName:{
