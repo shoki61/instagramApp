@@ -56,7 +56,7 @@ class Home extends React.Component{
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={()=>this.props.navigation.navigate('camera')}>
                      <SImage width={30} source={require('../images/cameraIcon.png')}/>
                   </TouchableOpacity>
 

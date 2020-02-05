@@ -1,5 +1,5 @@
 import { observable, action, decorate } from 'mobx';
-import { observer } from 'mobx-react';
+
 
 
 
