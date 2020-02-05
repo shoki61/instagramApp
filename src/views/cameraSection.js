@@ -1,9 +1,10 @@
 import React from 'react';
-import {View,TouchableOpacity} from 'react-native';
+import {View,TouchableOpacity,Text} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 
 import styles from '../styles/cameraStyle';
 import cameraController from '../controllers/cameraController';
+
 
 class Camera extends React.Component{
     render(){
@@ -27,7 +28,7 @@ class Camera extends React.Component{
                     buttonNegative: 'Cancel',
                   }}
                 >
-                    
+                 <TouchableOpacity onPress={()=>cameraController.setType}><Text >{cameraController.cameraOptions.type}</Text></TouchableOpacity>
                 </RNCamera>
             </View>
         );
