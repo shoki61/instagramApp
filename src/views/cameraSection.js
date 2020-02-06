@@ -1,9 +1,8 @@
 import React from 'react';
-import {View,Image,TouchableOpacity} from 'react-native';
+import {View,Image,TouchableOpacity, PermissionsAndroid} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import ImagePicker from 'react-native-image-picker';
-
-
+import CameraRoll from '@react-native-community/cameraroll';
 
 import styles from '../styles/cameraStyle';
 import cameraController from '../controllers/cameraController';
@@ -11,7 +10,52 @@ import { observer } from 'mobx-react';
 
 
 class Camera extends React.Component{
-    
+ 
+
+permissionControll = async () => { 
+
+  try {
+    const sonuc1 = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+      {
+        title: 'Dosya Okuma İzni',
+        message: 'Uygulama bu izne ihtiyaç duyuyor.',
+        buttonNeutral: 'Daha Sonra Sor',
+        buttonNegative: 'İptal',
+        buttonPositive: 'İzin Ver',
+      },
+    );
+
+
+    const sonuc2 = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      {
+        title: 'Dosya Yazma İzni',
+        message: 'Uygulama bu izne ihtiyaç duyuyor.',
+        buttonNeutral: 'Daha Sonra Sor',
+        buttonNegative: 'İptal',
+        buttonPositive: 'İzin Ver',
+      },
+    );
+
+
+    if ((sonuc1 === PermissionsAndroid.RESULTS.GRANTED) && (sonuc2 === PermissionsAndroid.RESULTS.GRANTED)) console.log('İZİN VERİLDİ');
+    else console.log('İZİN VERİLMEDİ');
+  }
+  catch (err) { console.warn(err); }
+}
+  
+takePicture = async () => {
+	await this.permissionControll();
+
+	if (this.camera){
+		const options = { quality: 1, base64: true, doNotSave: false, };
+		const data = await this.camera.takePictureAsync(options);
+		CameraRoll.saveToCameraRoll(data.uri, 'photo')
+	}
+};
+
+   
   launchImageLibrary = () => {
     let options = {
       storageOptions: {
@@ -37,7 +81,7 @@ class Camera extends React.Component{
     });
 
   }
-
+  
     render(){
         return(
             <View style={styles.container}>
@@ -73,11 +117,11 @@ class Camera extends React.Component{
                 
                  <View style={styles.bottomContainer}>
                     <View style={styles.cameraButtonContainer}>
-                      <TouchableOpacity><Image style={styles.cameraButton} source={require('../images/cameraButtonIcon.png')}/></TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.takePicture()}><Image style={styles.cameraButton} source={require('../images/cameraButtonIcon.png')}/></TouchableOpacity>
                     </View>
                     <View style={styles.bottomContainerSection}>
                       <TouchableOpacity onPress={()=>this.launchImageLibrary()}><Image style={styles.bottomIcons} source={require('../images/galleryIcon.png')}/></TouchableOpacity>
-                      <TouchableOpacity><Image style={styles.bottomIcons} source={require('../images/rotateCameraIcon.png')}/></TouchableOpacity>
+                      <TouchableOpacity onPress={()=>cameraController.setType()} ><Image style={styles.bottomIcons} source={require('../images/rotateCameraIcon.png')}/></TouchableOpacity>
                     </View>
                  </View>
 
