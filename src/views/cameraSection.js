@@ -1,9 +1,12 @@
 import React from 'react';
-import {View,TouchableOpacity,Text} from 'react-native';
+import {View,Image,TouchableOpacity, Text} from 'react-native';
 import {RNCamera} from 'react-native-camera';
+import SImage from 'react-native-scalable-image';
 
 import styles from '../styles/cameraStyle';
 import cameraController from '../controllers/cameraController';
+import { observer } from 'mobx-react';
+
 
 
 class Camera extends React.Component{
@@ -14,7 +17,7 @@ class Camera extends React.Component{
                   style={styles.cameraContainer}
                   ref={ref => {this.camera = ref}}
                   type={cameraController.cameraOptions.type}
-                  flashMode={RNCamera.Constants.FlashMode.on}
+                  flashMode={cameraController.cameraOptions.flashMode}
                   androidCameraPermissionOptions={{
                     title: 'Permission to use camera',
                     message: 'We need your permission to use your camera',
@@ -28,10 +31,31 @@ class Camera extends React.Component{
                     buttonNegative: 'Cancel',
                   }}
                 >
-                 <TouchableOpacity onPress={()=>cameraController.setType}><Text >{cameraController.cameraOptions.type}</Text></TouchableOpacity>
+                 <View style={styles.cameraTopSection}>
+                    <TouchableOpacity><Image style={styles.cameraTopImages} source={require('../images/settingIcon.png')}/></TouchableOpacity>    
+                    <TouchableOpacity onPress={()=>cameraController.setFlashMode()}>
+                      {cameraController.cameraOptions.flashMode==='auto' &&  <Image style={styles.cameraTopImages} source={require('../images/flashAutoIcon.png')}/>}
+                      {cameraController.cameraOptions.flashMode==='on' &&  <Image style={styles.cameraTopImages} source={require('../images/flashOnIcon.png')}/>}
+                      {cameraController.cameraOptions.flashMode==='off' &&  <Image style={styles.cameraTopImages} source={require('../images/flashOffIcon.png')}/>}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('home')}><Image style={styles.CloseIconStyle} source={require('../images/closeIcon.png')}/></TouchableOpacity>
+                 </View>
+
+                
+                 <View style={styles.bottomContainer}>
+                    <View style={styles.cameraButtonContainer}>
+                      <TouchableOpacity><Image style={styles.cameraButton} source={require('../images/cameraButtonIcon.png')}/></TouchableOpacity>
+                    </View>
+                    <View style={styles.bottomContainerSection}>
+                      <TouchableOpacity><Image style={styles.bottomIcons} source={require('../images/galleryIcon.png')}/></TouchableOpacity>
+                      <TouchableOpacity onPress={()=>cameraController.setType()}><Image style={styles.bottomIcons} source={require('../images/rotateCameraIcon.png')}/></TouchableOpacity>
+                    </View>
+                 </View>
+
+
                 </RNCamera>
             </View>
         );
     }
 }
-export default Camera;
+export default observer(Camera);
