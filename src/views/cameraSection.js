@@ -1,15 +1,43 @@
 import React from 'react';
-import {View,Image,TouchableOpacity, Text} from 'react-native';
+import {View,Image,TouchableOpacity} from 'react-native';
 import {RNCamera} from 'react-native-camera';
-import SImage from 'react-native-scalable-image';
+import ImagePicker from 'react-native-image-picker';
+
+
 
 import styles from '../styles/cameraStyle';
 import cameraController from '../controllers/cameraController';
 import { observer } from 'mobx-react';
 
 
-
 class Camera extends React.Component{
+    
+  launchImageLibrary = () => {
+    let options = {
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    ImagePicker.launchImageLibrary(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+        alert(response.customButton);
+      } else {
+        console.log('response', JSON.stringify(response));
+       
+      }
+     
+    });
+
+  }
+
     render(){
         return(
             <View style={styles.container}>
@@ -30,6 +58,7 @@ class Camera extends React.Component{
                     buttonPositive: 'Ok',
                     buttonNegative: 'Cancel',
                   }}
+                  
                 >
                  <View style={styles.cameraTopSection}>
                     <TouchableOpacity><Image style={styles.cameraTopImages} source={require('../images/settingIcon.png')}/></TouchableOpacity>    
@@ -47,8 +76,8 @@ class Camera extends React.Component{
                       <TouchableOpacity><Image style={styles.cameraButton} source={require('../images/cameraButtonIcon.png')}/></TouchableOpacity>
                     </View>
                     <View style={styles.bottomContainerSection}>
-                      <TouchableOpacity><Image style={styles.bottomIcons} source={require('../images/galleryIcon.png')}/></TouchableOpacity>
-                      <TouchableOpacity onPress={()=>cameraController.setType()}><Image style={styles.bottomIcons} source={require('../images/rotateCameraIcon.png')}/></TouchableOpacity>
+                      <TouchableOpacity onPress={()=>this.launchImageLibrary()}><Image style={styles.bottomIcons} source={require('../images/galleryIcon.png')}/></TouchableOpacity>
+                      <TouchableOpacity><Image style={styles.bottomIcons} source={require('../images/rotateCameraIcon.png')}/></TouchableOpacity>
                     </View>
                  </View>
 

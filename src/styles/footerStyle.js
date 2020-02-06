@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         position:'absolute',
         height:h/11.5,
         width:w,
-        bottom:0,
+        bottom:-200,
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
